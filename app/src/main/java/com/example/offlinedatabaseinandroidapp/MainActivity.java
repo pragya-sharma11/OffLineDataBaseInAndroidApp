@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
                     if(cursor.getCount()>0){
                         Toast.makeText(MainActivity.this, "User logged in", Toast.LENGTH_SHORT).show();
                         Intent i = new Intent(MainActivity.this, Logout.class);
-                        i.putExtra("name", cursor.getString(1));
+                        i.putExtra("name", cursor.getString(0));
                         startActivity(i);
                         finish();
                     }
