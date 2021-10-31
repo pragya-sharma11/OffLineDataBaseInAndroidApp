@@ -14,6 +14,9 @@ public class Logout extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logout2);
         b = findViewById(R.id.button5);
+        Intent intent = getIntent();
+        String s1 = intent.getStringExtra("name");
+        b.setText(b.getText() + "  " + s1);
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
