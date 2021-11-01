@@ -19,7 +19,7 @@ public class Signup extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup2);
         b1 = findViewById(R.id.button3);
-        b2 = findViewById(R.id.button2);
+        b2 = findViewById(R.id.button4);
         e1 = findViewById(R.id.editText3);
         e2 = findViewById(R.id.editText4);
         e3 = findViewById(R.id.editText5);
@@ -48,8 +48,8 @@ public class Signup extends AppCompatActivity {
                 }
                 else{
                     SQLiteDatabase database = openOrCreateDatabase("Authentication", MODE_PRIVATE, null );
-                    database.execSQL("create table if not exists Students (varchar name, varchar email, varchar password)");
-                    String s4 = "select * from Students where name = '" + s1 + "' and email = '" + s2 + "');";
+                    database.execSQL("create table if not exists Students (name varchar, email varchar, password varchar)");
+                    String s4 = "select * from Students where (name = '" + s1 + "' and email = '" + s2 + "')";
                     Cursor cursor = database.rawQuery(s4, null);
                     if(cursor.getCount()>0)
                     {
@@ -57,6 +57,9 @@ public class Signup extends AppCompatActivity {
                     } else{
                         database.execSQL("insert into Students values ('" + s1 + "', '" + s2 + "', '" + s3 + "')");
                         Toast.makeText(Signup.this, "Database updated!!", Toast.LENGTH_SHORT).show();
+                        Intent i = new Intent(Signup.this, Logout.class);
+                        startActivity(i);
+                        finish();
                     }
                 }
             }

@@ -41,13 +41,13 @@ public class MainActivity extends AppCompatActivity {
                     e2.setError("please fill password");
                 } else {
                     SQLiteDatabase database = openOrCreateDatabase("Authentication", MODE_PRIVATE, null);
-                    database.execSQL("create table if not exists Students (varchar name, varchar email, varchar password)");
-                    String s4 = "select * from Students where email = '" + s1 + "');";
+                    database.execSQL("create table if not exists Students (name varchar, email varchar, password varchar)");
+                    String s4 = "select * from Students where (email = '" + s1 + "')";
                     Cursor cursor = database.rawQuery(s4, null);
                     if(cursor.getCount()>0){
                         Toast.makeText(MainActivity.this, "User logged in", Toast.LENGTH_SHORT).show();
                         Intent i = new Intent(MainActivity.this, Logout.class);
-                        i.putExtra("name", cursor.getString(0));
+                        //i.putExtra("name", cursor.getString(0));
                         startActivity(i);
                         finish();
                     }
